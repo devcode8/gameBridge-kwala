@@ -1,0 +1,106 @@
+Name: GameFlow
+Trigger:
+  TriggerSourceContract: 0x0667F1ddF266efD3f58931e1D95bc4C5a58C0870
+  TriggerChainID: 80002
+  TriggerEventName: KwalaBadgeRequest(address,uint256,uint256,uint256,string,bool,bool,uint256)
+  TriggerEventFilter: NA
+  TriggerSourceContractABI: WwogIHsKICAgICJpbnB1dHMiOiBbCiAgICAgIHsKICAgICAgICAiaW50ZXJuYWxUeXBlIjogImFkZHJlc3MiLAogICAgICAgICJuYW1lIjogInRvIiwKICAgICAgICAidHlwZSI6ICJhZGRyZXNzIgogICAgICB9LAogICAgICB7CiAgICAgICAgImludGVybmFsVHlwZSI6ICJ1aW50MjU2IiwKICAgICAgICAibmFtZSI6ICJxdWl6SWQiLAogICAgICAgICJ0eXBlIjogInVpbnQyNTYiCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaW50ZXJuYWxUeXBlIjogInVpbnQyNTYiLAogICAgICAgICJuYW1lIjogInNjb3JlIiwKICAgICAgICAidHlwZSI6ICJ1aW50MjU2IgogICAgICB9LAogICAgICB7CiAgICAgICAgImludGVybmFsVHlwZSI6ICJ1aW50MjU2IiwKICAgICAgICAibmFtZSI6ICJ0b3RhbFF1ZXN0aW9ucyIsCiAgICAgICAgInR5cGUiOiAidWludDI1NiIKICAgICAgfSwKICAgICAgewogICAgICAgICJpbnRlcm5hbFR5cGUiOiAic3RyaW5nIiwKICAgICAgICAibmFtZSI6ICJiYWRnZUxldmVsIiwKICAgICAgICAidHlwZSI6ICJzdHJpbmciCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaW50ZXJuYWxUeXBlIjogInN0cmluZyIsCiAgICAgICAgIm5hbWUiOiAidG9rZW5VUkkiLAogICAgICAgICJ0eXBlIjogInN0cmluZyIKICAgICAgfQogICAgXSwKICAgICJuYW1lIjogIm1pbnRCYWRnZSIsCiAgICAib3V0cHV0cyI6IFtdLAogICAgInN0YXRlTXV0YWJpbGl0eSI6ICJub25wYXlhYmxlIiwKICAgICJ0eXBlIjogImZ1bmN0aW9uIgogIH0KXQ==
+  TriggerPrice: NA
+  RecurringSourceContract: NA
+  RecurringChainID: NA
+  RecurringEventName: NA
+  RecurringEventFilter: NA
+  RecurringSourceContractABI: NA
+  RecurringPrice: NA
+  RepeatEvery: event
+  ExecuteAfter: event
+  ExpiresIn: 1798741799
+  Meta: NA
+  ActionStatusNotificationPOSTURL: https://workflow-notification-test.kalp.network/push_notification
+  ActionStatusNotificationAPIKey: NA
+Actions:
+  - Name: MintStandardBadge
+    Type: call
+    APIEndpoint: NA
+    APIPayload:
+      Message: NA
+    TargetContract: 0x0aCc63313E429C6adc8853651DD63570670EFA8c
+    TargetFunction: function mintBadge(address to,uint256 quizId,uint256 score,uint256 totalQuestions,string badgeLevel,bool isHighScore,bool isFirstAttempt)
+    TargetParams:
+      - ${event.user}
+      - ${event.quizId}
+      - ${event.score}
+      - ${event.totalQuestions}
+      - ${event.badgeLevel}
+      - ${event.isHighScore}
+      - ${event.isFirstAttempt}
+    ChainID: 11155111
+    EncodedABI: NA
+    Bytecode: NA
+    Metadata: NA
+    RetriesUntilSuccess: 5
+  - Name: MintHighScoreBadge
+    Type: call
+    APIEndpoint: NA
+    APIPayload:
+      Message: NA
+    TargetContract: 0x0aCc63313E429C6adc8853651DD63570670EFA8c
+    TargetFunction: function mintBadgeWithCustomURI(address to,uint256 quizId,uint256 score,uint256 totalQuestions,string badgeLevel,string customURI,bool isHighScore,bool isFirstAttempt)
+    TargetParams:
+      - ${event.user}
+      - ${event.quizId}
+      - ${event.score}
+      - ${event.totalQuestions}
+      - High Score Achievement
+      - https://ipfs.io/ipfs/bafybeie3zikearfd4cvobe3gxblwlzlctmgag3lpztooi6r44ncissihde/winner.png
+      - true
+      - ${event.isFirstAttempt}
+    ChainID: 11155111
+    EncodedABI: NA
+    Bytecode: NA
+    Metadata: NA
+    RetriesUntilSuccess: 5
+  - Name: MintPerfectScoreBadge
+    Type: call
+    APIEndpoint: NA
+    APIPayload:
+      Message: NA
+    TargetContract: 0x0aCc63313E429C6adc8853651DD63570670EFA8c
+    TargetFunction: function mintBadgeWithCustomURI(address to,uint256 quizId,uint256 score,uint256 totalQuestions,string badgeLevel,string customURI,bool isHighScore,bool isFirstAttempt)
+    TargetParams:
+      - ${event.user}
+      - ${event.quizId}
+      - ${event.score}
+      - ${event.totalQuestions}
+      - Perfect Score Diamond
+      - https://ipfs.io/ipfs/bafybeie3zikearfd4cvobe3gxblwlzlctmgag3lpztooi6r44ncissihde/1.png
+      - true
+      - ${event.isFirstAttempt}
+    ChainID: 11155111
+    EncodedABI: NA
+    Bytecode: NA
+    Metadata: NA
+    RetriesUntilSuccess: 5
+  - Name: MintWelcomeBadge
+    Type: call
+    APIEndpoint: NA
+    APIPayload:
+      Message: NA
+    TargetContract: 0x0aCc63313E429C6adc8853651DD63570670EFA8c
+    TargetFunction: function mintBadgeWithCustomURI(address to,uint256 quizId,uint256 score,uint256 totalQuestions,string badgeLevel,string customURI,bool isHighScore,bool isFirstAttempt)
+    TargetParams:
+      - ${event.user}
+      - ${event.quizId}
+      - ${event.score}
+      - ${event.totalQuestions}
+      - Welcome Badge
+      - https://ipfs.io/ipfs/bafybeie3zikearfd4cvobe3gxblwlzlctmgag3lpztooi6r44ncissihde/welcome.png
+      - ${event.isHighScore}
+      - true
+    ChainID: 11155111
+    EncodedABI: NA
+    Bytecode: NA
+    Metadata: NA
+    RetriesUntilSuccess: 5
+Execution:
+  Mode: parallel

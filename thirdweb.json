@@ -1,0 +1,10 @@
+{
+  "name": "Quiz Game Smart Contracts",
+  "version": "1.0.0",
+  "contracts": {
+    "QuizProgress": {
+      "source": "./contracts/QuizProgress.sol",
+      "name": "QuizProgress"
+    }
+  }
+}
